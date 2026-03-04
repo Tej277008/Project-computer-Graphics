@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # CSE4303 Project 1 — Software Rasterizer (Python)
 
 **Goal**: Implement a CPU triangle rasterizer with edge-function coverage, supersampling (SSAA), and bilinear texture filtering.
@@ -19,3 +20,6 @@ Open `src/rasterizer.py` and complete the TODOs:
 **Optional**: Mipmapping level choice (stub provided).
 
 Grading emphasizes **correctness**, **image quality** (AA), **engineering**, and **write‑up**.
+=======
+# Project-computer-Graphics
+>>>>>>> 9d1b0dfa568a0ca7a460983e4576d20245bd7fc5
