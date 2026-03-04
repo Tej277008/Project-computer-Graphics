@@ -1,0 +1,37 @@
+Project 1 – Software Rasterizer
+Name: Tej Bikram Thapa
+Course: CSE 4303 – Computer Graphics
+
+1. Edge-Function Triangle Coverage
+
+The rasterizer determines whether a sample point lies inside a triangle using the edge-function method. Each triangle is defined by three vertices. The vertices are first scaled based on the supersampling factor so that rasterization occurs at the supersample resolution.
+
+A bounding box is computed around the triangle to reduce the number of pixels that need to be tested. For every sample point inside the bounding box, three edge functions are evaluated. These edge functions represent the signed area between the sample point and each triangle edge.
+
+If all three edge values have the same sign as the triangle’s signed area, the sample point is inside the triangle. Once the point is inside the triangle, barycentric coordinates are computed using the edge function values. These barycentric weights are used to interpolate the color of the triangle based on the colors of its three vertices.
+
+2. Super-Sample Anti-Aliasing (SSAA)
+
+Supersampling is used to reduce aliasing artifacts along triangle edges. Instead of computing one color per pixel, multiple samples are taken inside each pixel. The framebuffer resolution is increased by the supersampling factor S.
+
+During rasterization, colors are written to this higher-resolution framebuffer. After rasterization is complete, the resolve step averages the S × S samples corresponding to each pixel. This averaged value becomes the final color of the pixel in the output image.
+
+Increasing the number of samples improves edge smoothness but increases computation time.
+
+3. Bilinear Texture Filtering
+
+The rasterizer also supports bilinear texture filtering when sampling textures. When a texture coordinate is sampled, the four closest texels surrounding that coordinate are identified.
+
+Instead of selecting only the nearest texel, bilinear filtering performs interpolation between the four texels. First interpolation occurs in the horizontal direction, and then interpolation occurs in the vertical direction. This produces smoother texture results compared to nearest-neighbor sampling.
+
+4. Results and Observations
+
+Three images were rendered using different supersampling rates.
+
+When using 1 sample per pixel, triangle edges appear jagged because only one sample is taken per pixel. When using 4 samples per pixel, the edges appear smoother because multiple samples are averaged together. Using 16 samples produces even smoother edges, although it requires significantly more computation time.
+
+These results demonstrate that supersampling improves image quality by reducing aliasing artifacts along edges.
+
+5. Conclusion
+
+This project implemented a basic CPU-based triangle rasterizer using edge functions and barycentric interpolation. Supersampling was used to reduce aliasing artifacts, and bilinear filtering was implemented to improve texture sampling quality. The project demonstrates how fundamental rasterization techniques used in modern graphics pipelines can be implemented in software.
